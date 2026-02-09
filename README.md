@@ -1,16 +1,38 @@
-# React + Vite
+# Barreto News - Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Um portal de notícias moderno com design premium, focado na advocacia e informação jurídica simplificada.
 
-Currently, two official plugins are available:
+## 🚀 Tecnologias
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   [React](https://react.dev/)
+-   [Vite](https://vitejs.dev/)
+-   [Tailwind CSS v4](https://tailwindcss.com/)
+-   [Lucide React](https://lucide.dev/) (Ícones)
 
-## React Compiler
+## 🎨 Design System
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Inspirado na identidade visual da Barreto Advocacia:
+-   **Ouro**: `#b4832d`
+-   **Marrom**: `#6c3805`
+-   **Off-white**: `#fdfbf7`
+-   **Estilo**: Glassmorphism, tipografia serifada premium.
 
-## Expanding the ESLint configuration
+## 🛠️ Como rodar localmente
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1.  Clone o repositório:
+    ```bash
+    git clone https://github.com/stylepegasus/BarretoNewsGH.git
+    ```
+2.  Instale as dependências:
+    ```bash
+    npm install
+    ```
+3.  Rode o servidor de desenvolvimento:
+    ```bash
+    npm run dev
+    ```
+
+## 📝 Estrutura
+
+-   `src/App.jsx`: Componente principal com todas as páginas e lógica.
+-   `src/index.css`: Estilos globais e configuração do Tailwind.
