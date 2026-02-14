@@ -4,6 +4,7 @@ import {
   Info, ArrowRight, ShieldCheck, CheckCircle2,
   Instagram, MessageCircle
 } from 'lucide-react';
+import { supabase } from './lib/supabase';
 
 /* --- SISTEMA DE DESIGN & TOKENS ---
   Paleta derivada da imagem enviada:
@@ -131,16 +132,36 @@ const Logo = () => (
 
 const NewsletterForm = ({ location = "hero" }) => {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("idle"); // idle, loading, success
+  const [status, setStatus] = useState("idle"); // idle, loading, success, error
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email) return;
     setStatus("loading");
-    setTimeout(() => {
-      setStatus("success");
-      setEmail("");
-    }, 1500);
+    setErrorMessage("");
+
+    try {
+      const { error } = await supabase
+        .from('subscribers')
+        .insert([{ email }]);
+
+      if (error) {
+        if (error.code === '23505') { // Unique violation code for Postgres
+          setErrorMessage("Este e-mail já está inscrito.");
+          setStatus("error");
+        } else {
+          throw error;
+        }
+      } else {
+        setStatus("success");
+        setEmail("");
+      }
+    } catch (error) {
+      console.error('Error submitting email:', error);
+      setErrorMessage("Erro ao inscrever. Tente novamente.");
+      setStatus("error");
+    }
   };
 
   if (status === "success") {
@@ -176,6 +197,14 @@ const NewsletterForm = ({ location = "hero" }) => {
         Junte-se a 5.000+ leitores inteligentes. <span className="opacity-70">Grátis. Sem spam.</span>
       </p>
     </form>
+      {
+    status === "error" && (
+      <p className="mt-2 text-xs text-red-500 text-center animate-fade-in">
+        {errorMessage}
+      </p>
+    )
+  }
+
   );
 };
 
