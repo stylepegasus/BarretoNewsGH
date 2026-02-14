@@ -196,14 +196,12 @@ const NewsletterForm = ({ location = "hero" }) => {
       <p className="mt-3 text-xs text-gray-500 text-center">
         Junte-se a 5.000+ leitores inteligentes. <span className="opacity-70">Grátis. Sem spam.</span>
       </p>
+      {status === "error" && (
+        <p className="mt-2 text-xs text-red-500 text-center animate-fade-in">
+          {errorMessage}
+        </p>
+      )}
     </form>
-      {
-    status === "error" && (
-      <p className="mt-2 text-xs text-red-500 text-center animate-fade-in">
-        {errorMessage}
-      </p>
-    )
-  }
 
   );
 };
